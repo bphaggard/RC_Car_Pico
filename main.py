@@ -13,6 +13,9 @@ enable2 = PWM(Pin(6), frequency)
 
 dc_motors = DCMotor(pin1, pin2, pin3, pin4, enable1, enable2)
 
+# Initialize LED on pin 13
+leds = Pin(13, Pin.OUT)
+
 # Set min duty cycle (15000) and max duty cycle (65535) 
 #dc_motor = DCMotor(pin1, pin2, enable, 15000, 65535)
 
@@ -59,6 +62,10 @@ def parse_command(command):
         servo_write(servo, 85)
     elif cmd == "servo.right":
         servo_write(servo, 99)
+    elif cmd == "lights.on":
+        leds.value(1)
+    elif cmd == "lights.off":
+        leds.value(0)
     else:
         print("Unknown command:", cmd)
 
